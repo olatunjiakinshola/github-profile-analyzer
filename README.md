@@ -18,3 +18,12 @@ A full-stack web app that analyzes any public GitHub profile and generates an AI
 **APIs:** GitHub REST API, Google Gemini API
 
 ## Project Structure
+github-profile-analyzer/
+├── client/ # React frontend
+│ └── src/
+│ ├── components/
+│ └── App.jsx
+├── server/ # Express backend
+│ ├── routes/
+│ └── services/
+
