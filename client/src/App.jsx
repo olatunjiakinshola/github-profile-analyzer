@@ -21,8 +21,8 @@ function App() {
 
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/github/analyze/${username}`
-      );
+  `${import.meta.env.VITE_API_URL}/api/github/analyze/${username}`
+);
       setData(response.data);
     } catch (err) {
       setError(err.response?.data?.error || 'Something went wrong');
