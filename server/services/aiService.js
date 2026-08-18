@@ -1,6 +1,8 @@
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const Groq = require('groq-sdk');
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY,
+});
 
 async function generateInsights(profile, stats) {
   const prompt = `
@@ -21,16 +23,16 @@ Respond ONLY in valid JSON, no markdown, no extra text, in this exact shape:
 }
 `;
 
-const model = genAI.getGenerativeModel({ model: 'gemini-flash-latest' });
+  const response = await groq.chat.completions.create({
+    model: 'llama-3.3-70b-versatile',
+    messages: [{ role: 'user', content: prompt }],
+    max_tokens: 400,
+  });
 
-  const result = await model.generateContent(prompt);
-  const rawText = result.response.text();
-
-  // Gemini sometimes wraps JSON in markdown code fences — strip them if present
-  const cleaned = rawText.replace(/```json|```/g, '').trim();
+  const rawText = response.choices[0].message.content;
 
   try {
-    return JSON.parse(cleaned);
+    return JSON.parse(rawText);
   } catch (e) {
     console.error('Failed to parse AI response:', rawText);
     return {
