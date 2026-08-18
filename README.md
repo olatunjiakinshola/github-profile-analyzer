@@ -8,7 +8,7 @@ Note: The backend runs on Render's free tier, which spins down after 15 minutes 
 
 ## Screenshot
 
-![GitHub Profile Analyzer screenshot](client/src/assets/screenshot)
+![GitHub Profile Analyzer screenshot](client/src/assets/Screenshot.png)
 
 ## Features
 
