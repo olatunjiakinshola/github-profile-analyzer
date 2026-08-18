@@ -24,7 +24,7 @@ Respond ONLY in valid JSON, no markdown, no extra text, in this exact shape:
 `;
 
   const response = await groq.chat.completions.create({
-    model: 'llama-3.3-70b-versatile',
+    model: 'openai/gpt-oss-120b',
     messages: [{ role: 'user', content: prompt }],
     max_tokens: 400,
   });
